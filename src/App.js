@@ -1,8 +1,14 @@
-import React from "react";
-import EmployeeResultsContainer from "./components/EmployeeResultsContainer"
+import EmployeeResultsContainer from "./components/EmployeeResultsContainer";
+import Header from "./components/Header";
+import "./styles/Main.css";
 
 function App() {
-  return <EmployeeResultsContainer />;
+  return (
+    <div>
+      <Header />
+      <EmployeeResultsContainer />
+    </div>
+  );
 }
 
 export default App;

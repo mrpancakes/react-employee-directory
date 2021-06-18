@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ResultRows from "./TableRows";
 import API from "../utils/API";
+// import "../styles/Main.css";
 
 class EmployeeResultsContainer extends Component {
     state = {
