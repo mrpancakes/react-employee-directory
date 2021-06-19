@@ -3,7 +3,7 @@ function ResultRows(props) {
     return (
         <tbody>
             {props.results.map((result, index) => (
-                <tr>
+                <tr key={index + 1}>
                     <th scope="row">{index + 1}</th>
                     <td>{result.name.first}</td>
                     <td>{result.name.last}</td>
