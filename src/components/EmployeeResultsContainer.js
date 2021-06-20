@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import ResultRows from "./TableRows";
+import DataTable from "./DataTable/index";
 import API from "../utils/API";
-// import "../styles/Main.css";
 
 class EmployeeResultsContainer extends Component {
     state = {
@@ -24,19 +23,7 @@ class EmployeeResultsContainer extends Component {
 
     render() {
         return (
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Empl ID</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Country</th>
-                    </tr>
-                </thead>
-                <ResultRows results={this.state.results} />
-            </table>
+            <DataTable results={this.state.results} />
         )
     }
 };
