@@ -30,8 +30,23 @@ class EmployeeResultsContainer extends Component {
     handleInputChange = (event => {
         const value = event.target.value;
         this.setState({ search: value });
-    })
+        this.searchByName(value.toLowerCase());
+    });
 
+    handleFormSubmit = (event => {
+        event.preventDefault();
+    });
+
+    searchByName = input => {
+        if (input) {
+            this.setState({
+                filteredResults: this.state.results.filter(person => {
+                    return person.name.first.toLowerCase().includes(input);
+                })
+            });
+            console.log(this.state.filteredResults)
+        };
+    }
 
 
     render() {
@@ -42,6 +57,7 @@ class EmployeeResultsContainer extends Component {
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
                 />
+                {/* <div style={{textAlign: "center", margin: "30px"}}>{this.state.search}</div> */}
                 <DataTable 
                     results={this.state.results}
                     searchByName={this.searchByName}
