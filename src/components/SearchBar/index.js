@@ -1,11 +1,20 @@
 import "./style.css"
 
-function Search() {
+function SearchBar(props) {
     return (
-        <div className="input-group mb-3 search-bar">
-            <input type="text" className="form-control" placeholder="Search by first name" aria-label="Username" aria-describedby="basic-addon1" />
+        <div className="text-center">
+            <form className="col" onSubmit={props.handleFormSubmit}>
+                <input
+                    className="form-control"
+                    value={props.value}
+                    name="search"
+                    onChange={props.handleInputChange}
+                    type="search"
+                    placeholder="Search"
+                />
+            </form>
         </div>
     )
 };
 
-export default Search;
+export default SearchBar;
