@@ -38,16 +38,17 @@ class EmployeeResultsContainer extends Component {
     });
 
     searchByName = input => {
-        if (input) {
+        if (input !== '') {
             this.setState({
                 filteredResults: this.state.results.filter(person => {
                     return person.name.first.toLowerCase().includes(input);
                 })
             });
             console.log(this.state.filteredResults)
-        };
+        } else {
+            this.setState({ filteredResults: this.state.results })
+        }
     }
-
 
     render() {
         return (
@@ -57,9 +58,9 @@ class EmployeeResultsContainer extends Component {
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
                 />
-                {/* <div style={{textAlign: "center", margin: "30px"}}>{this.state.search}</div> */}
+
                 <DataTable 
-                    results={this.state.results}
+                    results={this.state.filteredResults}
                     searchByName={this.searchByName}
                 />
             </>
