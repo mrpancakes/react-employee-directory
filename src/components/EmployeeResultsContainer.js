@@ -21,7 +21,7 @@ class EmployeeResultsContainer extends Component {
                     results: res.data.results,
                     filteredResults: res.data.results
                  });
-                console.log(this.state.results);
+                // console.log(this.state.results);
             })
             .catch(err => console.log(err));
     };
@@ -38,7 +38,7 @@ class EmployeeResultsContainer extends Component {
     });
 
     searchByName = input => {
-        if (input !== '') {
+        if (input) {
             this.setState({
                 filteredResults: this.state.results.filter(person => {
                     return person.name.first.toLowerCase().includes(input);
@@ -47,7 +47,7 @@ class EmployeeResultsContainer extends Component {
             console.log(this.state.filteredResults)
         } else {
             this.setState({ filteredResults: this.state.results })
-        }
+        };
     }
 
     render() {
@@ -61,7 +61,6 @@ class EmployeeResultsContainer extends Component {
 
                 <DataTable 
                     results={this.state.filteredResults}
-                    searchByName={this.searchByName}
                 />
             </>
         )
