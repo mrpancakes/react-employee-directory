@@ -6,7 +6,7 @@ function DataTable(props) {
             <thead>
                 <tr>
                     <th scope="col">Empl ID</th>
-                    <th scope="col">First</th>
+                    <th scope="col" onClick={props.sort} >First</th>
                     <th scope="col">Last</th>
                     <th scope="col">Email</th>
                     <th scope="col">City</th>

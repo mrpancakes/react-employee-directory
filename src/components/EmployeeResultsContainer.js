@@ -7,7 +7,6 @@ class EmployeeResultsContainer extends Component {
     state = {
         search: "",
         results: [],
-        filteredResults: [],
     };
 
     componentDidMount() {
@@ -17,10 +16,9 @@ class EmployeeResultsContainer extends Component {
     loadEmployees = () => {
         API.fetchEmployees()
             .then(res => {
-                this.setState({ 
+                this.setState({
                     results: res.data.results,
-                    filteredResults: res.data.results
-                 });
+                });
                 // console.log(this.state.results);
             })
             .catch(err => console.log(err));
@@ -29,38 +27,49 @@ class EmployeeResultsContainer extends Component {
 
     handleInputChange = (event => {
         const value = event.target.value;
-        this.setState({ search: value });
-        this.searchByName(value.toLowerCase());
+        this.setState({ search: value.toLowerCase() });
     });
 
     handleFormSubmit = (event => {
         event.preventDefault();
     });
 
-    searchByName = input => {
-        if (input) {
-            this.setState({
-                filteredResults: this.state.results.filter(person => {
-                    return person.name.first.toLowerCase().includes(input);
-                })
-            });
-            console.log(this.state.filteredResults)
-        } else {
-            this.setState({ filteredResults: this.state.results })
-        };
+    firstNameSort = () => {
+        const resultCopy = [...this.state.results];
+        resultCopy.sort((a, b) => {
+            if (a.name.first > b.name.first) {
+                return 1;
+            } else if (a.name.first < b.name.first) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        this.setState({ results: resultCopy });
     }
 
+    searchByName = () => {
+        const resultCopy = [...this.state.results];
+        const filteredResults = resultCopy.filter(person => {
+            return person.name.first.toLowerCase().includes(this.state.search);
+        })
+        return filteredResults;
+    }
+
+
     render() {
+        const filtered = this.searchByName();
         return (
             <>
-                <SearchBar 
+                <SearchBar
                     value={this.state.search}
                     handleInputChange={this.handleInputChange}
                     handleFormSubmit={this.handleFormSubmit}
                 />
 
-                <DataTable 
-                    results={this.state.filteredResults}
+                <DataTable
+                    results={filtered}
+                    sort={this.firstNameSort}
                 />
             </>
         )
