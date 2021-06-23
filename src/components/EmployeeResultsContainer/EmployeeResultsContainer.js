@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import DataTable from "./DataTable/index";
-import SearchBar from "./SearchBar";
-import API from "../utils/API";
+import DataTable from "../DataTable/index";
+import SearchBar from "../SearchBar";
+import API from "../../utils/API"
 
 class EmployeeResultsContainer extends Component {
     state = {

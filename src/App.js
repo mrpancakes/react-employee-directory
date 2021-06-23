@@ -1,4 +1,4 @@
-import EmployeeResultsContainer from "./components/EmployeeResultsContainer";
+import EmployeeResultsContainer from "./components/EmployeeResultsContainer/EmployeeResultsContainer";
 import Header from "./components/Header/index";
 import "./styles/Main.css";
 
